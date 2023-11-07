@@ -1,0 +1,4 @@
+.navigation-link .active {
+  transition: 0.1s;
+  color: #ff3811;
+}
