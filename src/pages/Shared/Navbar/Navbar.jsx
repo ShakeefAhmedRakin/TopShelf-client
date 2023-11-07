@@ -1,9 +1,11 @@
 import { Link, NavLink } from "react-router-dom";
 import "./Navbar.css";
 import { BiSolidCarMechanic } from "react-icons/bi";
+import { ImBooks } from "react-icons/im";
 import { useContext } from "react";
 import { AuthContext } from "../../../providers/AuthProvider";
 import { toast } from "sonner";
+import { IoIosLogIn } from "react-icons/io";
 
 const Navbar = () => {
   const { user, logOut } = useContext(AuthContext);
@@ -21,24 +23,12 @@ const Navbar = () => {
       <li className="navigation-link">
         <NavLink to="/">Home</NavLink>
       </li>
-      <li className="navigation-link">
-        <NavLink to="/about">About</NavLink>
-      </li>
-      <li className="navigation-link">
-        <NavLink to="/services">Services</NavLink>
-      </li>
-      <li className="navigation-link">
-        <NavLink to="/blog">Blog</NavLink>
-      </li>
-      <li className="navigation-link">
-        <NavLink to="/contact">Contact</NavLink>
-      </li>
     </>
   );
 
   return (
     <>
-      <div className="navbar my-5 max-w-7xl px-2 md:px-8 mx-auto">
+      <div className="navbar my-5 max-w-7xl mx-auto border-b-secondary border-2 border-t-0 border-l-0 border-r-0">
         <div className="navbar-start">
           <div className="dropdown">
             <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -64,12 +54,14 @@ const Navbar = () => {
               {links}
             </ul>
           </div>
-          <img
-            src="/src/assets/logo.svg"
-            className="hidden md:flex aspect-video w-32"
-          />
+          <div className="hidden md:flex gap-2 items-center text-primaryLight">
+            <ImBooks className="text-5xl"></ImBooks>
+            <h1 className="font-bold text-2xl">
+              <span className="text-secondary">Top</span>Shelf
+            </h1>
+          </div>
         </div>
-        <div className="navbar-center hidden lg:flex mr-8">
+        <div className="navbar-center hidden lg:flex">
           <ul className="flex text-lg font-medium gap-9">{links}</ul>
         </div>
         <div className="navbar-end gap-x-1">
@@ -119,9 +111,12 @@ const Navbar = () => {
             ) : (
               <Link
                 to="/login"
-                className="btn btn-primary bg-transparent text-primary text-base font-semibold px-5 border-primary normal-case hover:bg-primary hover:border-primary hover:text-white ml-2 md:ml-4"
+                className="btn btn-primary bg-transparent text-primaryLight text-base font-semibold px-5  normal-case hover:text-white hover:bg-primaryLight ml-2 md:ml-4 flex items-center border-none"
               >
                 Login
+                <span className="text-2xl">
+                  <IoIosLogIn></IoIosLogIn>
+                </span>
               </Link>
             )}
           </div>
