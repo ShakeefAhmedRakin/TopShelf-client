@@ -12,7 +12,7 @@ const BookCard = ({ book }) => {
           <img
             src={book.book_image}
             alt="Book Cover"
-            className="w-full h-72 object-cover rounded-md"
+            className="w-full h-72 object-contain rounded-md"
           />
         </div>
         <div className="flex flex-col h-full gap-1 mt-2">
@@ -32,7 +32,7 @@ const BookCard = ({ book }) => {
           />
           <div className="flex flex-col justify-between h-full">
             <h1 className="font-medium">{book.book_name}</h1>
-            <Link to={`details/${book._id}`} className="w-full">
+            <Link to={`/details/${book._id}`} className="w-full">
               <button className="btn bg-transparent text-primaryLight border-none hover:text-white hover:bg-primaryLight mt-3 w-full">
                 Details<BsFillBookFill></BsFillBookFill>
               </button>

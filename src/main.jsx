@@ -10,6 +10,8 @@ import Register from "./pages/Register/Register";
 import Books from "./pages/Books/Books";
 import AddBook from "./pages/AddBook/AddBook";
 import axios from "axios";
+import BookDetails from "./pages/BookDetails/BookDetails";
+import ReadBook from "./pages/ReadBook/ReadBook";
 
 const router = createBrowserRouter([
   {
@@ -38,6 +40,18 @@ const router = createBrowserRouter([
         element: <Books></Books>,
         loader: ({ params }) =>
           axios.get(`${import.meta.env.VITE_apiURL}/books/${params.category}`),
+      },
+      {
+        path: "/details/:id",
+        element: <BookDetails></BookDetails>,
+        loader: ({ params }) =>
+          axios.get(`${import.meta.env.VITE_apiURL}/book/${params.id}`),
+      },
+      {
+        path: "/read/:id",
+        element: <ReadBook></ReadBook>,
+        loader: ({ params }) =>
+          axios.get(`${import.meta.env.VITE_apiURL}/book/${params.id}`),
       },
       // {
       //   path: "/detail/:id",
