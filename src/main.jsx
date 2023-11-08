@@ -14,6 +14,8 @@ import BookDetails from "./pages/BookDetails/BookDetails";
 import ReadBook from "./pages/ReadBook/ReadBook";
 import PrivateRoute from "./routes/PrivateRoute";
 import BorrowedBooks from "./pages/BorrowedBooks/BorrowedBooks";
+import AllBooks from "./pages/AllBooks/AllBooks";
+import UpdateBook from "./pages/UpdateBook/UpdateBook";
 
 const router = createBrowserRouter([
   {
@@ -35,7 +37,11 @@ const router = createBrowserRouter([
       },
       {
         path: "/addbook",
-        element: <AddBook></AddBook>,
+        element: (
+          <PrivateRoute>
+            <AddBook></AddBook>
+          </PrivateRoute>
+        ),
       },
       {
         path: "/books/:category",
@@ -66,6 +72,25 @@ const router = createBrowserRouter([
             <BorrowedBooks></BorrowedBooks>
           </PrivateRoute>
         ),
+      },
+      {
+        path: "/allbooks",
+        element: (
+          <PrivateRoute>
+            <AllBooks></AllBooks>
+          </PrivateRoute>
+        ),
+        loader: () => axios.get(`${import.meta.env.VITE_apiURL}/books`),
+      },
+      {
+        path: "/update/:id",
+        element: (
+          <PrivateRoute>
+            <UpdateBook></UpdateBook>
+          </PrivateRoute>
+        ),
+        loader: ({ params }) =>
+          axios.get(`${import.meta.env.VITE_apiURL}/book/${params.id}`),
       },
       // {
       //   path: "/detail/:id",
