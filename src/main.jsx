@@ -12,6 +12,7 @@ import AddBook from "./pages/AddBook/AddBook";
 import axios from "axios";
 import BookDetails from "./pages/BookDetails/BookDetails";
 import ReadBook from "./pages/ReadBook/ReadBook";
+import PrivateRoute from "./routes/PrivateRoute";
 
 const router = createBrowserRouter([
   {
@@ -43,7 +44,11 @@ const router = createBrowserRouter([
       },
       {
         path: "/details/:id",
-        element: <BookDetails></BookDetails>,
+        element: (
+          <PrivateRoute>
+            <BookDetails></BookDetails>
+          </PrivateRoute>
+        ),
         loader: ({ params }) =>
           axios.get(`${import.meta.env.VITE_apiURL}/book/${params.id}`),
       },

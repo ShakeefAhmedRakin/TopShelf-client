@@ -1,14 +1,64 @@
 import { useLoaderData } from "react-router-dom";
 import { BsFillBookFill } from "react-icons/bs";
 import { BiSolidBookmarkPlus } from "react-icons/bi";
+import { AiOutlineClose } from "react-icons/ai";
 import { Rating } from "@smastrom/react-rating";
 import "@smastrom/react-rating/style.css";
 import { Link } from "react-router-dom";
 import { useState } from "react";
+import BorrowBook from "../../components/BorrowBook";
+import { useContext } from "react";
+import { AuthContext } from "../../providers/AuthProvider";
+import { toast } from "sonner";
+import axios from "axios";
+
 const BookDetails = () => {
   const book = useLoaderData().data;
-
+  const { user } = useContext(AuthContext);
   const [remaining, setRemaining] = useState(book.book_quantity);
+
+  const handleBorrowBook = (e) => {
+    e.preventDefault();
+    const email = e.target.email.value;
+    const date = e.target.date.value;
+
+    const borrowedInfo = {
+      user_email: email,
+      book_id: book._id,
+      return_date: date,
+    };
+
+    axios
+      .post(`${import.meta.env.VITE_apiURL}/borrowed`, borrowedInfo, {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+      .then((response) => {
+        const data = response.data;
+        setRemaining(remaining - 1);
+        if (data.insertedId) {
+          toast.success(`Book borrowed`);
+        }
+        const updatedInfo = {
+          book_quantity: remaining - 1,
+        };
+        axios
+          .put(`${import.meta.env.VITE_apiURL}/book/${book._id}`, updatedInfo, {
+            headers: {
+              "Content-Type": "application/json",
+            },
+          })
+
+          .then(() => {})
+          .catch((error) => {
+            console.error("Error adding product:", error);
+          });
+      })
+      .catch(() => {
+        toast.error("Book already borrowed");
+      });
+  };
 
   return (
     <>
@@ -66,16 +116,18 @@ const BookDetails = () => {
               {/* MODAL */}
               <dialog id="my_modal_1" className="modal">
                 <div className="modal-box">
-                  <h3 className="font-bold text-lg">Hello!</h3>
-                  <p className="py-4">
-                    Press ESC key or click the button below to close
-                  </p>
-                  <div className="modal-action">
+                  <h1 className="flex justify-between items-center text-xl font-bold">
+                    Borrow Book
                     <form method="dialog">
-                      {/* if there is a button in form, it will close the modal */}
-                      <button className="btn">Close</button>
+                      <button className="btn text-white bg-primaryLight hover:bg-primaryLight">
+                        <AiOutlineClose></AiOutlineClose>
+                      </button>
                     </form>
-                  </div>
+                  </h1>
+                  <BorrowBook
+                    user={user}
+                    handleBorrowBook={handleBorrowBook}
+                  ></BorrowBook>
                 </div>
               </dialog>
             </div>
