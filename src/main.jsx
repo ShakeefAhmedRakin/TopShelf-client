@@ -16,12 +16,13 @@ import PrivateRoute from "./routes/PrivateRoute";
 import BorrowedBooks from "./pages/BorrowedBooks/BorrowedBooks";
 import AllBooks from "./pages/AllBooks/AllBooks";
 import UpdateBook from "./pages/UpdateBook/UpdateBook";
+import Error from "./pages/Error/Error";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Root></Root>,
-    // errorElement: <Error></Error>
+    errorElement: <Error></Error>,
     children: [
       {
         path: "/",
