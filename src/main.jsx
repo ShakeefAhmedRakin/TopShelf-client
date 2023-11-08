@@ -9,6 +9,7 @@ import Login from "./pages/Login/Login";
 import Register from "./pages/Register/Register";
 import Books from "./pages/Books/Books";
 import AddBook from "./pages/AddBook/AddBook";
+import axios from "axios";
 
 const router = createBrowserRouter([
   {
@@ -35,12 +36,9 @@ const router = createBrowserRouter([
       {
         path: "/books/:category",
         element: <Books></Books>,
-        // loader: ({ params }) =>
-        //   fetch(
-        //     `https://brand-shop-server-rho.vercel.app/products/${params.brand}`
-        //   ),
+        loader: ({ params }) =>
+          axios.get(`${import.meta.env.VITE_apiURL}/books/${params.category}`),
       },
-
       // {
       //   path: "/detail/:id",
       //   element: (

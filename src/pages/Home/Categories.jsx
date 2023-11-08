@@ -16,13 +16,14 @@ const Categories = () => {
       <div className="flex justify-center">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
           {categories.map((category) => (
-            <>
-              <div className="text-white bg-primaryLight p-3 rounded-md shadow-lg font-semibold hover:-translate-y-1 duration-300">
-                <Link to={`books/${category.category_name}`}>
-                  <h1>{category.category_name}</h1>
-                </Link>
-              </div>
-            </>
+            <div
+              key={category._id}
+              className="text-white bg-primaryLight p-3 rounded-md shadow-lg font-semibold hover:-translate-y-1 duration-300"
+            >
+              <Link to={`books/${category.category_name}`}>
+                <h1>{category.category_name}</h1>
+              </Link>
+            </div>
           ))}
         </div>
       </div>
