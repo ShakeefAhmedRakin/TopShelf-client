@@ -7,6 +7,8 @@ import AuthProvider from "./providers/AuthProvider";
 import Home from "./pages/Home/Home";
 import Login from "./pages/Login/Login";
 import Register from "./pages/Register/Register";
+import Books from "./pages/Books/Books";
+import AddBook from "./pages/AddBook/AddBook";
 
 const router = createBrowserRouter([
   {
@@ -26,6 +28,19 @@ const router = createBrowserRouter([
         path: "/register",
         element: <Register></Register>,
       },
+      {
+        path: "/addbook",
+        element: <AddBook></AddBook>,
+      },
+      {
+        path: "/books/:category",
+        element: <Books></Books>,
+        // loader: ({ params }) =>
+        //   fetch(
+        //     `https://brand-shop-server-rho.vercel.app/products/${params.brand}`
+        //   ),
+      },
+
       // {
       //   path: "/detail/:id",
       //   element: (

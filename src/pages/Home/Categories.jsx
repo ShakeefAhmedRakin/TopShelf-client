@@ -10,7 +10,6 @@ const Categories = () => {
       setCategories(response.data);
     });
   }, []);
-  console.log(categories);
 
   return (
     <div className="max-w-7xl mx-auto px-2 my-12">
@@ -19,7 +18,7 @@ const Categories = () => {
           {categories.map((category) => (
             <>
               <div className="text-white bg-primaryLight p-3 rounded-md shadow-lg font-semibold hover:-translate-y-1 duration-300">
-                <Link to={`/${category.category_name}`}>
+                <Link to={`books/${category.category_name}`}>
                   <h1>{category.category_name}</h1>
                 </Link>
               </div>
