@@ -2,6 +2,20 @@ import { BiSolidBookmarkPlus } from "react-icons/bi";
 import PropTypes from "prop-types";
 
 const BorrowBook = ({ user, handleBorrowBook }) => {
+  function getDate() {
+    const today = new Date();
+    let month = today.getMonth() + 1;
+    const year = today.getFullYear();
+    let date = today.getDate();
+    if (date < 10) {
+      date = "0" + date.toString();
+    }
+    if (month < 10) {
+      month = "0" + date.toString();
+    }
+    return `${year}-${month}-${date}`;
+  }
+
   return (
     <>
       <form onSubmit={handleBorrowBook}>
@@ -33,13 +47,27 @@ const BorrowBook = ({ user, handleBorrowBook }) => {
         </div>
         <div className="mb-6">
           <label className="block mb-2 text-sm font-medium text-black dark:text-white">
-            Email
+            Borrow Date
+          </label>
+          <input
+            type="date"
+            name="borrowed_date"
+            className="bg-gray-300 dark:bg-gray-900 border border-gray-300 dark:border-gray-900 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:text-white"
+            required
+            readOnly
+            defaultValue={getDate()}
+          />
+        </div>
+        <div className="mb-6">
+          <label className="block mb-2 text-sm font-medium text-black dark:text-white">
+            Return Date
           </label>
           <input
             type="date"
             name="date"
             className="bg-gray-50 dark:bg-gray-900 border border-gray-300 dark:border-gray-900 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:text-white"
             required
+            min={getDate()}
           />
         </div>
         <button className="btn w-full text-white bg-primaryLight hover:bg-primaryLight">

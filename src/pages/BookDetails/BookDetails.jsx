@@ -22,10 +22,13 @@ const BookDetails = () => {
     const email = e.target.email.value;
     const date = e.target.date.value;
 
+    const borrowed_date = e.target.borrowed_date.value;
+
     const borrowedInfo = {
       user_email: email,
       book_id: book._id,
       return_date: date,
+      borrowed_date: borrowed_date,
     };
 
     axios
