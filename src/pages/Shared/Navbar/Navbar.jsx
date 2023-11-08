@@ -1,11 +1,10 @@
 import { Link, NavLink } from "react-router-dom";
 import "./Navbar.css";
-import { BiSolidCarMechanic } from "react-icons/bi";
 import { ImBooks } from "react-icons/im";
 import { useContext } from "react";
 import { AuthContext } from "../../../providers/AuthProvider";
 import { toast } from "sonner";
-import { IoIosLogIn } from "react-icons/io";
+import { IoIosLogIn, IoIosLogOut } from "react-icons/io";
 
 const Navbar = () => {
   const { user, logOut } = useContext(AuthContext);
@@ -28,7 +27,7 @@ const Navbar = () => {
 
   return (
     <>
-      <div className="navbar my-5 max-w-7xl mx-auto border-b-secondary border-2 border-t-0 border-l-0 border-r-0">
+      <div className="navbar my-5 max-w-7xl mx-auto px-2 border-b-secondary border-2 border-t-0 border-l-0 border-r-0">
         <div className="navbar-start">
           <div className="dropdown">
             <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -67,16 +66,16 @@ const Navbar = () => {
         <div className="navbar-end gap-x-1">
           <div className="flex ml-2 md:ml-4 gap-x-4">
             {user ? (
-              <>
-                <Link to="/bookings">
-                  <button className="text-2xl btn rounded-full bg-transparent text-gray-800">
-                    <BiSolidCarMechanic></BiSolidCarMechanic>
-                  </button>
-                </Link>
+              <div className="flex items-center gap-2 rounded-md">
+                <div className="w-full">
+                  <p className="text-primaryLight font-semibold text-lg">
+                    {user?.displayName}
+                  </p>
+                </div>
                 <div className="dropdown dropdown-end">
                   <label
                     tabIndex={0}
-                    className="btn btn-circle p-[2px] bg-transparent hover:scale-[1.02] duration-300 border-primary hover:bg-transparent hover:border-primary"
+                    className="btn btn-circle p-[2px] bg-transparent hover:scale-[1.02] duration-300 border-primaryLight hover:bg-transparent hover:border-primaryLight"
                   >
                     <img
                       src={user.photoURL}
@@ -87,27 +86,22 @@ const Navbar = () => {
                     tabIndex={0}
                     className="dropdown-content z-[50] menu p-4 shadow rounded-md w-fit bg-white"
                   >
-                    <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-x-5 gap-y-2">
+                    <div className="flex flex-col justify-between items-start gap-y-2">
                       <div>
-                        <p className="text-primary font-semibold">
-                          {user?.displayName}
-                        </p>
-                        <p className="text-primary font-semibold">
-                          {user?.email}
-                        </p>
-                      </div>
-                      <div className="w-fit">
                         <a
-                          className="btn btn-primary bg-transparent text-primary text-base font-semibold px-5 border-primary normal-case hover:bg-primary hover:border-primary hover:text-white whitespace-nowrap"
+                          className="btn btn-primary bg-transparent text-primaryLight text-base font-semibold px-5  normal-case hover:text-white hover:bg-primaryLight flex items-center border-none whitespace-nowrap flex-nowrap w-full"
                           onClick={handleLogOut}
                         >
                           Log out
+                          <span className="text-2xl">
+                            <IoIosLogOut></IoIosLogOut>
+                          </span>
                         </a>
                       </div>
                     </div>
                   </ul>
                 </div>
-              </>
+              </div>
             ) : (
               <Link
                 to="/login"
