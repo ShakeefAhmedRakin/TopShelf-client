@@ -13,6 +13,7 @@ import axios from "axios";
 import BookDetails from "./pages/BookDetails/BookDetails";
 import ReadBook from "./pages/ReadBook/ReadBook";
 import PrivateRoute from "./routes/PrivateRoute";
+import BorrowedBooks from "./pages/BorrowedBooks/BorrowedBooks";
 
 const router = createBrowserRouter([
   {
@@ -57,6 +58,14 @@ const router = createBrowserRouter([
         element: <ReadBook></ReadBook>,
         loader: ({ params }) =>
           axios.get(`${import.meta.env.VITE_apiURL}/book/${params.id}`),
+      },
+      {
+        path: "/borrowed",
+        element: (
+          <PrivateRoute>
+            <BorrowedBooks></BorrowedBooks>
+          </PrivateRoute>
+        ),
       },
       // {
       //   path: "/detail/:id",
