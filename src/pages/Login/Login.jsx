@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../providers/AuthProvider";
 import { toast } from "sonner";
 import { useContext } from "react";
+import axios from "axios";
 
 const Login = () => {
   const { signInUser, signInWithGoogle } = useContext(AuthContext);
@@ -29,11 +30,21 @@ const Login = () => {
 
     signInUser(email, password)
       .then(() => {
-        toast.success("Successfully logged in. Redirecting...");
-        e.target.reset();
-        setTimeout(() => {
-          navigate("/");
-        }, 2000);
+        const user = { email };
+        axios
+          .post(`${import.meta.env.VITE_apiURL}/jwt`, user, {
+            withCredentials: true,
+          })
+          .then((response) => {
+            console.log(response.data);
+            if (response.data.success) {
+              toast.success("Successfully logged in. Redirecting...");
+              e.target.reset();
+              setTimeout(() => {
+                navigate("/");
+              }, 2000);
+            }
+          });
       })
       .catch((error) => {
         toast.error(error.message);
