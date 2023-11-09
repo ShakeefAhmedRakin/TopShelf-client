@@ -33,3 +33,7 @@ I've ensured that when book details are updated, these changes are reflected thr
 #### 7. Filter Available Books
 
 I've added the capability for users to filter the "All Books" page to display only available books.
+
+#### 8. React Hook Form
+
+I've added the capability for users to filter the books page to display the books they search for as they type in the form.
