@@ -29,18 +29,17 @@ const BorrowedBooks = () => {
   }, [user.email]);
 
   const handleReturn = (idToBeDeleted, book_id) => {
-    fetch(`${import.meta.env.VITE_apiURL}/borrowed/${idToBeDeleted}`, {
-      method: "DELETE",
-    })
-      .then((result) => result.json())
-      .then((data) => {
-        if (data.deletedCount > 0) {
+    axios
+      .delete(`${import.meta.env.VITE_apiURL}/borrowed/${idToBeDeleted}`)
+      .then((response) => {
+        if (response.data.deletedCount > 0) {
           toast.success("Returned Book Successfully");
 
           const remaining = borrowed.filter(
             (book) => book.borrowed_id !== idToBeDeleted
           );
           setBorrowed(remaining);
+
           // UPDATING QUANTITY
           axios
             .get(`${import.meta.env.VITE_apiURL}/book/${book_id}`)
@@ -49,6 +48,7 @@ const BorrowedBooks = () => {
               const updatedInfo = {
                 book_quantity: bookInfo.book_quantity + 1,
               };
+
               axios.put(
                 `${import.meta.env.VITE_apiURL}/book/${bookInfo._id}`,
                 updatedInfo,
@@ -60,6 +60,10 @@ const BorrowedBooks = () => {
               );
             });
         }
+      })
+      .catch((error) => {
+        // Handle errors here
+        console.error("An error occurred:", error);
       });
   };
 
