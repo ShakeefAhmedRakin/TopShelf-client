@@ -97,7 +97,7 @@ const Navbar = ({ toggleTheme }) => {
             </h1>
           </div>
           <button
-            className="btn btn-sm md:btn-md bg-transparent hover:bg-transparent border-white hover:border-white border-[1px] duration-300 rounded-none ml-6"
+            className="btn btn-circle btn-sm md:btn-md bg-transparent hover:bg-transparent hover:border-white border-[1px] duration-300 rounded-none ml-6"
             onClick={toggleTheme}
           >
             <BsBookHalf className="text-xl md:text-3xl text-primaryLight dark:text-primaryDark"></BsBookHalf>
