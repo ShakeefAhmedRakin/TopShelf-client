@@ -10,12 +10,13 @@ import BorrowBook from "../../components/BorrowBook";
 import { useContext } from "react";
 import { AuthContext } from "../../providers/AuthProvider";
 import { toast } from "sonner";
-import axios from "axios";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 const BookDetails = () => {
   const book = useLoaderData().data;
   const { user } = useContext(AuthContext);
   const [remaining, setRemaining] = useState(book.book_quantity);
+  const AxiosSecure = useAxiosSecure();
 
   const handleBorrowBook = (e) => {
     e.preventDefault();
@@ -31,12 +32,11 @@ const BookDetails = () => {
       borrowed_date: borrowed_date,
     };
 
-    axios
-      .post(`${import.meta.env.VITE_apiURL}/borrowed`, borrowedInfo, {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      })
+    AxiosSecure.post(`/borrowed`, borrowedInfo, {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
       .then((response) => {
         const data = response.data;
         setRemaining(remaining - 1);
@@ -46,12 +46,11 @@ const BookDetails = () => {
         const updatedInfo = {
           book_quantity: remaining - 1,
         };
-        axios
-          .put(`${import.meta.env.VITE_apiURL}/book/${book._id}`, updatedInfo, {
-            headers: {
-              "Content-Type": "application/json",
-            },
-          })
+        AxiosSecure.put(`/book/${book._id}`, updatedInfo, {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        })
 
           .then(() => {})
           .catch((error) => {

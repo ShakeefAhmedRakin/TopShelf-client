@@ -3,18 +3,19 @@ import { useEffect, useState } from "react";
 import { toast } from "sonner";
 import { Rating } from "@smastrom/react-rating";
 import "@smastrom/react-rating/style.css";
-import axios from "axios";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 const UpdateBook = () => {
   const current_data = useLoaderData().data;
   const [rating, setRating] = useState(current_data.book_rating);
   const [categories, setCategories] = useState([]);
+  const AxiosSecure = useAxiosSecure();
 
   useEffect(() => {
-    axios.get(`${import.meta.env.VITE_apiURL}/categories`).then((response) => {
+    AxiosSecure.get(`/categories`).then((response) => {
       setCategories(response.data);
     });
-  }, []);
+  }, [AxiosSecure]);
 
   const handleUpdateProduct = (e) => {
     e.preventDefault();
@@ -33,16 +34,14 @@ const UpdateBook = () => {
       book_rating,
     };
 
-    const apiUrl = import.meta.env.VITE_apiURL;
     const endpoint = `/book-update/${current_data._id}`;
 
-    axios
-      .put(`${apiUrl}${endpoint}`, updatedBook, {
-        headers: {
-          "Content-Type": "application/json",
-        },
-        withCredentials: true,
-      })
+    AxiosSecure.put(`${endpoint}`, updatedBook, {
+      headers: {
+        "Content-Type": "application/json",
+      },
+      withCredentials: true,
+    })
       .then((response) => {
         if (response.data.modifiedCount > 0) {
           console.log(response.data);

@@ -2,7 +2,6 @@ import { Link, useNavigate } from "react-router-dom";
 import { toast } from "sonner";
 import { useContext } from "react";
 import { AuthContext } from "../../providers/AuthProvider";
-import axios from "axios";
 
 const Register = () => {
   const { createUser, addUsernamePhoto, signInUser, logOut } =
@@ -12,12 +11,13 @@ const Register = () => {
 
   const handleSignUp = (e) => {
     e.preventDefault();
+
     const form = e.target;
 
-    const name = form.name.value;
+    const username = form.username.value;
+    const photoURL = form.photoURL.value;
     const email = form.email.value;
     const password = form.password.value;
-    const photo = form.photo.value;
 
     if (password.length < 6) {
       toast.error("Password should be at least 6 characters or longer");
@@ -32,26 +32,17 @@ const Register = () => {
 
     createUser(email, password)
       .then(() => {
-        addUsernamePhoto(name, photo)
+        addUsernamePhoto(username, photoURL)
           .then(() => {
             logOut().then(() => {
               signInUser(email, password)
-                .then(() => {
-                  const user = { email };
-                  axios
-                    .post(`${import.meta.env.VITE_apiURL}/jwt`, user, {
-                      withCredentials: true,
-                    })
-                    .then((response) => {
-                      console.log(response.data);
-                      if (response.data.success) {
-                        toast.success("Successfully logged in. Redirecting...");
-                        e.target.reset();
-                        setTimeout(() => {
-                          navigate("/");
-                        }, 2000);
-                      }
-                    });
+                .then((result) => {
+                  console.log(result.user);
+                  toast.success("Successfully registered. Redirecting...");
+                  e.target.reset();
+                  setTimeout(() => {
+                    navigate("/");
+                  }, 2000);
                 })
                 .catch((error) => {
                   console.log("Error from logging in user" + error);

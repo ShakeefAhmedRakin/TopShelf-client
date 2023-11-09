@@ -2,18 +2,18 @@ import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../providers/AuthProvider";
 import BorrowedCard from "../../components/BorrowedCard";
 import { toast } from "sonner";
-import axios from "axios";
 import { BiBookReader } from "react-icons/bi";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 const BorrowedBooks = () => {
   const [borrowed, setBorrowed] = useState([]);
   const [loading, setLoading] = useState(true);
   const { user } = useContext(AuthContext);
+  const AxiosSecure = useAxiosSecure();
 
   useEffect(() => {
     setLoading(true);
-    axios
-      .get(`${import.meta.env.VITE_apiURL}/borrowed/${user.email}`)
+    AxiosSecure.get(`/borrowed/${user.email}`)
       .then((response) => {
         if (response.status === 200) {
           setBorrowed(response.data);
@@ -26,11 +26,10 @@ const BorrowedBooks = () => {
       .catch((error) => {
         console.error("An error occurred:", error);
       });
-  }, [user.email]);
+  }, [user.email, AxiosSecure]);
 
   const handleReturn = (idToBeDeleted, book_id) => {
-    axios
-      .delete(`${import.meta.env.VITE_apiURL}/borrowed/${idToBeDeleted}`)
+    AxiosSecure.delete(`/borrowed/${idToBeDeleted}`)
       .then((response) => {
         if (response.data.deletedCount > 0) {
           toast.success("Returned Book Successfully");
@@ -41,28 +40,21 @@ const BorrowedBooks = () => {
           setBorrowed(remaining);
 
           // UPDATING QUANTITY
-          axios
-            .get(`${import.meta.env.VITE_apiURL}/book/${book_id}`)
-            .then((res) => {
-              const bookInfo = res.data;
-              const updatedInfo = {
-                book_quantity: bookInfo.book_quantity + 1,
-              };
+          AxiosSecure.get(`/book/${book_id}`).then((res) => {
+            const bookInfo = res.data;
+            const updatedInfo = {
+              book_quantity: bookInfo.book_quantity + 1,
+            };
 
-              axios.put(
-                `${import.meta.env.VITE_apiURL}/book/${bookInfo._id}`,
-                updatedInfo,
-                {
-                  headers: {
-                    "Content-Type": "application/json",
-                  },
-                }
-              );
+            AxiosSecure.put(`/book/${bookInfo._id}`, updatedInfo, {
+              headers: {
+                "Content-Type": "application/json",
+              },
             });
+          });
         }
       })
       .catch((error) => {
-        // Handle errors here
         console.error("An error occurred:", error);
       });
   };

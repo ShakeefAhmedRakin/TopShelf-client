@@ -1,14 +1,15 @@
-import axios from "axios";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 const Categories = () => {
   const [categories, setCategories] = useState([]);
   const [loading, setLoading] = useState(true);
+  const AxiosSecure = useAxiosSecure();
 
   useEffect(() => {
     setLoading(true);
-    axios.get(`${import.meta.env.VITE_apiURL}/categories`).then((response) => {
+    AxiosSecure.get(`/categories`).then((response) => {
       setCategories(response.data);
       setLoading(false);
     });

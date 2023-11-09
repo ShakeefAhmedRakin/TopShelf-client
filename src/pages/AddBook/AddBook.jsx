@@ -2,17 +2,19 @@ import { useEffect, useState } from "react";
 import { toast } from "sonner";
 import { Rating } from "@smastrom/react-rating";
 import "@smastrom/react-rating/style.css";
-import axios from "axios";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 const AddBook = () => {
   const [categories, setCategories] = useState([]);
   const [rating, setRating] = useState(0);
 
+  const AxiosSecure = useAxiosSecure();
+
   useEffect(() => {
-    axios.get(`${import.meta.env.VITE_apiURL}/categories`).then((response) => {
+    AxiosSecure.get(`/categories`).then((response) => {
       setCategories(response.data);
     });
-  }, []);
+  }, [AxiosSecure]);
 
   const handleAddProduct = (e) => {
     e.preventDefault();
@@ -35,13 +37,12 @@ const AddBook = () => {
       book_description,
     };
 
-    axios
-      .post(`${import.meta.env.VITE_apiURL}/books`, newBook, {
-        headers: {
-          "Content-Type": "application/json",
-        },
-        withCredentials: true,
-      })
+    AxiosSecure.post(`/books`, newBook, {
+      headers: {
+        "Content-Type": "application/json",
+      },
+      withCredentials: true,
+    })
       .then((response) => {
         const data = response.data;
         if (data.insertedId) {
