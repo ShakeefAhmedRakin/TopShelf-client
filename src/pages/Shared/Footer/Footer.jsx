@@ -1,48 +1,37 @@
 import { BsGoogle, BsTwitter, BsInstagram, BsLinkedin } from "react-icons/bs";
+import { ImBooks } from "react-icons/im";
 
 const Footer = () => {
   return (
-    <div className="bg-base-200 py-20">
-      <footer className="footer py-10 px-8 max-w-7xl mx-auto text-base-content">
-        <aside className="flex flex-col items-center w-full md:items-start gap-y-4">
-          <img src="/src/assets/logo.svg" className="w-20" />
-          <p className="max-w-xs text-center md:text-left">
+    <div className="bg-secondary py-20">
+      <footer className="py-10 px-8 max-w-7xl mx-auto text-base-content">
+        <aside className="flex flex-col items-center w-full gap-y-4">
+          <div className="flex gap-2 items-center text-primaryLight">
+            <ImBooks className="text-5xl"></ImBooks>
+            <h1 className="font-bold text-2xl">
+              <span className="text-white">Top</span>Shelf
+            </h1>
+          </div>
+          <p className="max-w-xl text-center text-white">
             {
-              " Your Source for Expert Auto Care. Diagnose, Repair, and Drive with Confidence. Your Car's Best Friend on the Road."
+              "Our mission is to provide access to a world of information, offer a diverse collection of books and resources, and create an environment where individuals of all ages can explore, discover, and connect."
             }
           </p>
           <div className="flex justify-center">
             <button className="btn btn-sm rounded-full bg-transparent border-none">
-              <BsGoogle></BsGoogle>
+              <BsGoogle className="text-white"></BsGoogle>
             </button>
             <button className="btn btn-sm rounded-full bg-transparent border-none">
-              <BsTwitter></BsTwitter>
+              <BsTwitter className="text-white"></BsTwitter>
             </button>
             <button className="btn btn-sm rounded-full bg-transparent border-none">
-              <BsInstagram></BsInstagram>
+              <BsInstagram className="text-white"></BsInstagram>
             </button>
             <button className="btn btn-sm rounded-full bg-transparent border-none">
-              <BsLinkedin></BsLinkedin>
+              <BsLinkedin className="text-white"></BsLinkedin>
             </button>
           </div>
         </aside>
-        <nav className="flex flex-col gap-y-2 items-center w-full md:items-start md:w-fit">
-          <header className="footer-title">About</header>
-          <a className="link link-hover">Home</a>
-          <a className="link link-hover">Service</a>
-          <a className="link link-hover">Contact</a>
-        </nav>
-        <nav className="flex flex-col gap-y-2 items-center w-full md:items-start md:w-fit">
-          <header className="footer-title">Company</header>
-          <a className="link link-hover">Why Car Doctor</a>
-          <a className="link link-hover">About</a>
-        </nav>
-        <nav className="flex flex-col gap-y-2 items-center w-full md:items-start md:w-fit">
-          <header className="footer-title">Support</header>
-          <a className="link link-hover">Support Center</a>
-          <a className="link link-hover">Feedback</a>
-          <a className="link link-hover">Accessibility</a>
-        </nav>
       </footer>
     </div>
   );
