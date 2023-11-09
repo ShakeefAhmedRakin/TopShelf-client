@@ -3,16 +3,28 @@ import { AuthContext } from "../../providers/AuthProvider";
 import BorrowedCard from "../../components/BorrowedCard";
 import { toast } from "sonner";
 import axios from "axios";
+import { BiBookReader } from "react-icons/bi";
 
 const BorrowedBooks = () => {
   const [borrowed, setBorrowed] = useState([]);
+  const [loading, setLoading] = useState(true);
   const { user } = useContext(AuthContext);
 
   useEffect(() => {
-    fetch(`${import.meta.env.VITE_apiURL}/borrowed/${user.email}`)
-      .then((res) => res.json())
-      .then((data) => {
-        setBorrowed(data);
+    setLoading(true);
+    axios
+      .get(`${import.meta.env.VITE_apiURL}/borrowed/${user.email}`)
+      .then((response) => {
+        if (response.status === 200) {
+          setBorrowed(response.data);
+          setLoading(false);
+        } else {
+          // Handle errors here if needed
+          console.error("Request failed with status code: ", response.status);
+        }
+      })
+      .catch((error) => {
+        console.error("An error occurred:", error);
       });
   }, [user.email]);
 
@@ -53,15 +65,30 @@ const BorrowedBooks = () => {
 
   return (
     <>
-      <div className="max-w-7xl mx-auto px-2 my-12 grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-6">
-        {borrowed.map((book) => (
-          <BorrowedCard
-            key={book.borrowed_id}
-            book={book}
-            handleReturn={handleReturn}
-          ></BorrowedCard>
-        ))}
-      </div>
+      {loading ? (
+        <>
+          <div className="flex items-center justify-center h-screen">
+            <span className="loading loading-bars loading-xl dark:text-white"></span>
+          </div>
+        </>
+      ) : borrowed.length > 0 ? (
+        <div className="max-w-7xl mx-auto px-2 my-12 grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-6">
+          {borrowed.map((book) => (
+            <BorrowedCard
+              key={book.borrowed_id}
+              book={book}
+              handleReturn={handleReturn}
+            ></BorrowedCard>
+          ))}
+        </div>
+      ) : (
+        <div className="max-w-7xl mx-auto px-2 my-12 h-96 gap-4 flex flex-col items-center justify-center">
+          <BiBookReader className="text-primaryLight dark:text-primaryDark text-4xl"></BiBookReader>
+          <h1 className="text-center font-bold text-xl dark:text-white">
+            No Books Borrowed Yet
+          </h1>
+        </div>
+      )}
     </>
   );
 };

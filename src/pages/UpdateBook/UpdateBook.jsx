@@ -58,13 +58,13 @@ const UpdateBook = () => {
     <>
       <div className="container mx-auto px-4 py-15">
         <div className="max-w-5xl mx-auto">
-          <div className="px-8 py-4 bg-white dark:bg-gray-800">
+          <div className="px-8 py-4 bg-white dark:bg-gray-800 my-5 rounded-lg">
             <form
               onSubmit={handleUpdateProduct}
               className="text-black dark:text-white"
             >
-              <h1 className="py-5 text-center my-5 font-bold text-2xl md:text-4xl text-black">
-                Add Book
+              <h1 className="dark:text-white py-5 text-center my-5 font-bold text-2xl md:text-4xl text-black">
+                Update Book
               </h1>
 
               <div className="mb-6">
@@ -166,7 +166,7 @@ const UpdateBook = () => {
               <div className="flex justify-center">
                 <button
                   type="submit"
-                  className="btn border-none bg-transparent hover:bg-primaryLight dark:bg-primaryDark dark:hover:bg-primaryDark font-bold text-primaryLight hover:text-white w-full"
+                  className="btn border-none dark:text-white bg-transparent hover:bg-primaryLight dark:bg-primaryDark dark:hover:bg-primaryDark font-bold text-primaryLight hover:text-white w-full"
                 >
                   Update Product
                 </button>

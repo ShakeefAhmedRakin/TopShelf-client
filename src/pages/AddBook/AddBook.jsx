@@ -57,12 +57,12 @@ const AddBook = () => {
     <>
       <div className="container mx-auto px-4 py-15">
         <div className="max-w-5xl mx-auto">
-          <div className="px-8 py-4 bg-white dark:bg-gray-800">
+          <div className="px-8 py-4 bg-white dark:bg-gray-800 my-5 rounded-lg">
             <form
               onSubmit={handleAddProduct}
               className="text-black dark:text-white"
             >
-              <h1 className="py-5 text-center my-5 font-bold text-2xl md:text-4xl text-black">
+              <h1 className="py-5 text-center dark:text-white my-5 font-bold text-2xl md:text-4xl text-black">
                 Add Book
               </h1>
 
@@ -171,7 +171,7 @@ const AddBook = () => {
               <div className="flex justify-center">
                 <button
                   type="submit"
-                  className="btn border-none bg-transparent hover:bg-primaryLight dark:bg-primaryDark dark:hover:bg-primaryDark font-bold text-primaryLight hover:text-white w-full"
+                  className="btn border-none dark:text-white bg-transparent hover:bg-primaryLight dark:bg-primaryDark dark:hover:bg-primaryDark font-bold text-primaryLight hover:text-white w-full"
                 >
                   Add Product
                 </button>

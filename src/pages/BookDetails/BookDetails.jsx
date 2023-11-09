@@ -65,7 +65,7 @@ const BookDetails = () => {
 
   return (
     <>
-      <div className="max-w-7xl mx-auto px-2 my-12">
+      <div className="max-w-7xl mx-auto px-2 my-12 py-12">
         <div className="flex flex-col md:flex-row gap-10">
           <div className="rounded-md">
             <img
@@ -75,34 +75,40 @@ const BookDetails = () => {
             />
           </div>
           <div className="flex flex-col h-full gap-1 mt-2 flex-1">
-            <h1 className="font-medium text-xl">{book.book_name}</h1>
+            <h1 className="font-medium text-xl dark:text-white">
+              {book.book_name}
+            </h1>
             <hr />
             <div className="flex justify-between items-center">
-              <div>
-                <div className="flex gap-4 items-center mb-2">
-                  <span className="badge text-white text-xs bg-primaryLight font-medium">
+              <div className="flex flex-col md:flex-row">
+                <div className="flex flex-col md:flex-row gap-4 items-start md:items-center mb-2">
+                  <span className="border-none dark:bg-primaryDark badge text-white text-xs bg-primaryLight font-medium">
                     {book.book_author}
                   </span>
-                  <span className="badge text-white text-xs bg-primaryLight font-medium">
+                  <span className="border-none dark:bg-primaryDark badge text-white text-xs bg-primaryLight font-medium">
                     {book.book_category}
                   </span>
                 </div>
-                <Rating
-                  style={{ maxWidth: 120 }}
-                  value={book.book_rating}
-                  readOnly
-                />
+                <div className="ml-2">
+                  <Rating
+                    style={{ maxWidth: 120 }}
+                    value={book.book_rating}
+                    readOnly
+                  />
+                </div>
               </div>
-              <h1 className="text-lg font-bold">Remaining: {remaining}</h1>
+              <h1 className="text-lg font-bold dark:text-white">
+                Remaining: {remaining}
+              </h1>
             </div>
             <hr />
-            <p className="h-24 overflow-y-hidden relative">
+            <p className="h-40 overflow-y-hidden relative dark:text-white mb-8">
               {book.book_description}
-              <div className="h-24 absolute bottom-0 w-full bg-gradient-to-t from-white to-transparent"></div>
+              <div className="h-24 absolute bottom-0 w-full bg-gradient-to-t from-white to-transparent dark:from-[#111827]"></div>
             </p>
             <div className="grid grid-cols-2 gap-4">
               <Link to={`/read/${book._id}`} className="w-full">
-                <button className="btn bg-transparent text-primaryLight border-none hover:text-white hover:bg-primaryLight mt-3 w-full">
+                <button className="btn dark:text-white dark:bg-primaryDark bg-transparent text-primaryLight border-none hover:text-white hover:bg-primaryLight mt-3 w-full">
                   Read<BsFillBookFill></BsFillBookFill>
                 </button>
               </Link>
@@ -111,18 +117,18 @@ const BookDetails = () => {
                 onClick={() =>
                   document.getElementById("my_modal_1").showModal()
                 }
-                className="btn bg-transparent text-primaryLight border-none hover:text-white hover:bg-primaryLight mt-3 w-full"
+                className="btn bg-transparent disabled:dark:bg-gray-800 disabled:dark:text-gray-300 dark:text-white dark:bg-primaryDark text-primaryLight border-none hover:text-white hover:bg-primaryLight mt-3 w-full"
               >
                 Borrow
                 <BiSolidBookmarkPlus className="text-xl"></BiSolidBookmarkPlus>
               </button>
               {/* MODAL */}
               <dialog id="my_modal_1" className="modal">
-                <div className="modal-box">
-                  <h1 className="flex justify-between items-center text-xl font-bold">
+                <div className="modal-box dark:bg-gray-800">
+                  <h1 className="flex justify-between items-center text-xl font-bold dark:text-white">
                     Borrow Book
                     <form method="dialog">
-                      <button className="btn text-white bg-primaryLight hover:bg-primaryLight">
+                      <button className="btn border-none dark:bg-primaryDark text-white bg-primaryLight hover:bg-primaryLight">
                         <AiOutlineClose></AiOutlineClose>
                       </button>
                     </form>

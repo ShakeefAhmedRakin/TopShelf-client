@@ -17,10 +17,10 @@ const BookCard = ({ book }) => {
         </div>
         <div className="flex flex-col h-full gap-1 mt-2">
           <div className="flex justify-between">
-            <span className="badge text-white text-xs bg-primaryLight font-medium">
+            <span className="border-none dark:bg-primaryDark badge text-white text-xs bg-primaryLight font-medium">
               {book.book_author}
             </span>
-            <span className="badge text-white text-xs bg-primaryLight font-medium">
+            <span className="border-none dark:bg-primaryDark badge text-white text-xs bg-primaryLight font-medium">
               {book.book_category}
             </span>
           </div>
@@ -31,9 +31,9 @@ const BookCard = ({ book }) => {
             readOnly
           />
           <div className="flex flex-col justify-between h-full">
-            <h1 className="font-medium">{book.book_name}</h1>
+            <h1 className="font-medium dark:text-white">{book.book_name}</h1>
             <Link to={`/details/${book._id}`} className="w-full">
-              <button className="btn bg-transparent text-primaryLight border-none hover:text-white hover:bg-primaryLight mt-3 w-full">
+              <button className="btn bg-transparent dark:text-white dark:bg-primaryDark text-primaryLight border-none hover:text-white hover:bg-primaryLight mt-3 w-full">
                 Details<BsFillBookFill></BsFillBookFill>
               </button>
             </Link>

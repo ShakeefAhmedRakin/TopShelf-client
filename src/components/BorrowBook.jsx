@@ -26,7 +26,7 @@ const BorrowBook = ({ user, handleBorrowBook }) => {
           <input
             type="text"
             name="name"
-            className="bg-gray-300 dark:bg-gray-900 border border-gray-300 dark:border-gray-900 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:text-white"
+            className="bg-gray-300 dark:bg-black border border-gray-300 dark:border-gray-900 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:text-white"
             required
             defaultValue={user.displayName}
             readOnly
@@ -39,7 +39,7 @@ const BorrowBook = ({ user, handleBorrowBook }) => {
           <input
             type="text"
             name="email"
-            className="bg-gray-300 dark:bg-gray-900 border border-gray-300 dark:border-gray-900 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:text-white"
+            className="bg-gray-300 dark:bg-black border border-gray-300 dark:border-gray-900 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:text-white"
             required
             defaultValue={user.email}
             readOnly
@@ -52,7 +52,7 @@ const BorrowBook = ({ user, handleBorrowBook }) => {
           <input
             type="date"
             name="borrowed_date"
-            className="bg-gray-300 dark:bg-gray-900 border border-gray-300 dark:border-gray-900 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:text-white"
+            className="bg-gray-300 dark:bg-black border border-gray-300 dark:border-gray-900 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:text-white"
             required
             readOnly
             defaultValue={getDate()}
@@ -70,7 +70,7 @@ const BorrowBook = ({ user, handleBorrowBook }) => {
             min={getDate()}
           />
         </div>
-        <button className="btn w-full text-white bg-primaryLight hover:bg-primaryLight">
+        <button className="btn w-full dark:bg-primaryDark border-none text-white bg-primaryLight hover:bg-primaryLight">
           Borrow
           <BiSolidBookmarkPlus className="text-xl"></BiSolidBookmarkPlus>
         </button>

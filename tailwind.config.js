@@ -11,7 +11,7 @@ export default {
         secondary: "#30475E",
         // DARK MODE
         backgroundDark: "#0a0a0a",
-        primaryLightDark: "#A90F0F",
+        primaryDark: "#A90F0F",
         secondaryDark: "#A1B8CE",
       },
 

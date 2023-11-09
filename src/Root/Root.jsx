@@ -4,14 +4,20 @@ import Footer from "../pages/Shared/Footer/Footer";
 import Navbar from "../pages/Shared/Navbar/Navbar";
 
 const Root = () => {
+  const toggleTheme = () => {
+    document.documentElement.classList.toggle("dark");
+  };
+
   return (
-    <div className="font-inter">
-      <ScrollRestoration></ScrollRestoration>
+    <>
       <Toaster richColors />
-      <Navbar></Navbar>
-      <Outlet></Outlet>
-      <Footer></Footer>
-    </div>
+      <div className="font-inter bg-white dark:bg-[#111827]">
+        <ScrollRestoration></ScrollRestoration>
+        <Navbar toggleTheme={toggleTheme}></Navbar>
+        <Outlet></Outlet>
+        <Footer></Footer>
+      </div>
+    </>
   );
 };
 

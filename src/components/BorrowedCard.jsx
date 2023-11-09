@@ -13,18 +13,22 @@ const BorrowedCard = ({ book, handleReturn }) => {
           />
         </div>
         <div className="flex flex-col h-full gap-1 mt-2">
-          <span className="badge text-white text-xs bg-primaryLight font-medium">
+          <span className="badge border-none text-white text-xs dark:bg-primaryDark bg-primaryLight font-medium">
             {book.book_category}
           </span>
           <hr />
           <div className="flex flex-col justify-between h-full">
-            <h1 className="font-medium">{book.book_name}</h1>
+            <h1 className="font-medium dark:text-gray-300">{book.book_name}</h1>
             <hr className="my-3" />
-            <p>Borrowed Date: {book.borrowed_date}</p>
-            <p>Return Date: {book.return_date}</p>
+            <p className="dark:text-gray-300">
+              Borrowed Date: {book.borrowed_date}
+            </p>
+            <p className="dark:text-gray-300">
+              Return Date: {book.return_date}
+            </p>
 
             <button
-              className="btn bg-transparent text-primaryLight border-none hover:text-white hover:bg-primaryLight mt-3 w-full"
+              className="btn bg-transparent dark:bg-primaryDark dark:text-white text-primaryLight border-none hover:text-white hover:bg-primaryLight mt-3 w-full"
               onClick={() => handleReturn(book.borrowed_id, book._id)}
             >
               Return

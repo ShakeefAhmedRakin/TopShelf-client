@@ -3,7 +3,7 @@ import { ImBooks } from "react-icons/im";
 
 const Footer = () => {
   return (
-    <div className="bg-secondary py-20">
+    <div className="bg-secondary dark:bg-opacity-30 py-20">
       <footer className="py-10 px-8 max-w-7xl mx-auto text-base-content">
         <aside className="flex flex-col items-center w-full gap-y-4">
           <div className="flex gap-2 items-center text-primaryLight">

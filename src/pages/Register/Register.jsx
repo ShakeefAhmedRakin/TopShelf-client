@@ -75,10 +75,10 @@ const Register = () => {
           <div className="flex-1">
             <div className="w-full py-16 px-8 md:px-12 lg:px-20 rounded-xl">
               <form className="flex flex-col" onSubmit={handleSignUp}>
-                <h1 className="text-center text-2xl lg:text-4xl font-semibold mb-0">
+                <h1 className="dark:text-white text-center text-2xl lg:text-4xl font-semibold mb-0">
                   Sign Up
                 </h1>
-                <label className="text-base lg:text-lg font-semibold mt-6 mb-3">
+                <label className="dark:text-white text-base lg:text-lg font-semibold mt-6 mb-3">
                   Name
                 </label>
                 <input
@@ -86,9 +86,9 @@ const Register = () => {
                   name="name"
                   placeholder="Your Username"
                   required
-                  className="py-3 px-4 border-[1px] rounded-xl text-sm"
+                  className="py-3 px-4 border-[1px] rounded-xl text-sm dark:text-white dark:bg-gray-600"
                 />
-                <label className="text-base lg:text-lg font-semibold mt-6 mb-3">
+                <label className="dark:text-white text-base lg:text-lg font-semibold mt-6 mb-3">
                   Photo
                 </label>
                 <input
@@ -96,9 +96,9 @@ const Register = () => {
                   name="photo"
                   placeholder="Your Photo URL"
                   required
-                  className="py-3 px-4 border-[1px] rounded-xl text-sm"
+                  className="py-3 px-4 border-[1px] rounded-xl text-sm dark:text-white dark:bg-gray-600"
                 />
-                <label className="text-base lg:text-lg font-semibold mt-6 mb-3">
+                <label className="dark:text-white text-base lg:text-lg font-semibold mt-6 mb-3">
                   Email
                 </label>
                 <input
@@ -106,9 +106,9 @@ const Register = () => {
                   name="email"
                   placeholder="Your Email"
                   required
-                  className="py-3 px-4 border-[1px] rounded-xl text-sm"
+                  className="py-3 px-4 border-[1px] rounded-xl text-sm dark:text-white dark:bg-gray-600"
                 />
-                <label className="text-base lg:text-lg font-semibold mt-6 mb-3">
+                <label className="dark:text-white text-base lg:text-lg font-semibold mt-6 mb-3">
                   Password
                 </label>
                 <input
@@ -116,17 +116,17 @@ const Register = () => {
                   name="password"
                   placeholder="Your Password"
                   required
-                  className="py-3 px-4 border-[1px] rounded-xl text-sm"
+                  className="py-3 px-4 border-[1px] rounded-xl text-sm dark:text-white dark:bg-gray-600"
                 />
-                <button className="btn mt-8 btn-primaryLight bg-primaryLight hover:bg-primaryLight text-white text-base px-5 border-primaryLight normal-case hover:border-primaryLight hover:text-white">
+                <button className="btn dark:bg-primaryDark border-none mt-8 btn-primaryLight bg-primaryLight hover:bg-primaryLight text-white text-base px-5 border-primaryLight normal-case hover:border-primaryLight hover:text-white">
                   Sign Up
                 </button>
               </form>
 
-              <p className="mt-12 text-center font-medium text-sm lg:text-base">
+              <p className="mt-12 dark:text-white text-center font-medium text-sm lg:text-base">
                 Already have an account?{" "}
                 <Link to="/login">
-                  <span className="link link-hover text-primaryLight">
+                  <span className="link link-hover text-primaryLight dark:text-primaryDark">
                     Log In
                   </span>
                 </Link>

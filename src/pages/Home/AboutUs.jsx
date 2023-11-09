@@ -4,13 +4,13 @@ import { BsPeopleFill } from "react-icons/bs";
 const AboutUs = () => {
   return (
     <div className="max-w-7xl mx-auto px-2 mt-12">
-      <section className="py-10 lg:py-20 bg-primaryLight font-poppins dark:bg-gray-800 rounded-lg shadow-lg px-2">
+      <section className="py-10 lg:py-20 bg-primaryLight font-poppins dark:bg-primaryDark dark:bg-opacity-70 rounded-lg shadow-lg px-2">
         <div className="max-w-6xl py-4 mx-auto lg:py-6 md:px-6">
           <div className="flex flex-wrap ">
             <div className="w-full px-4 mb-10 lg:w-1/2 lg:mb-0 ">
               <div className="lg:max-w-md">
-                <div className="px-4 pl-4 mb-6 border-l-4 border-white">
-                  <h1 className="text-sm text-white font-bold uppercase dark:text-gray-400 bg-secondary p-2 rounded-lg">
+                <div className="px-4 pl-4 mb-6 border-l-4 border-gray-300">
+                  <h1 className="text-sm text-white dark:text-primaryDark font-extrabold uppercase bg-secondary dark:bg-gray-900 p-2 rounded-lg">
                     Who we are?
                   </h1>
                   <h1 className="mt-2 text-3xl font-black text-white md:text-5xl dark:text-gray-300">
@@ -18,7 +18,7 @@ const AboutUs = () => {
                   </h1>
                 </div>
                 <hr className="mb-2" />
-                <p className="px-4 mb-10 text-base leading-7 text-gray-200 dark:text-gray-400">
+                <p className="px-4 mb-10 text-base leading-7 text-gray-200 dark:text-gray-300">
                   Welcome to TopShelf, a place where knowledge, community, and
                   culture converge. Established 2022, we have been a cornerstone
                   of our community, fostering a love for reading and lifelong
