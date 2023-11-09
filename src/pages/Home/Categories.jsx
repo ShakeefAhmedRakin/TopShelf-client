@@ -32,7 +32,13 @@ const Categories = () => {
             {categories.map((category) => (
               <Link to={`books/${category.category_name}`} key={category._id}>
                 <div className="text-white bg-primaryLight dark:bg-primaryDark p-3 rounded-md shadow-lg font-semibold hover:-translate-y-1 duration-300">
-                  <h1>{category.category_name}</h1>
+                  <img
+                    src={category.category_image}
+                    className="rounded-lg aspect-square object-cover w-48"
+                  />
+                  <h1 className="text-center mt-2 font-semibold">
+                    {category.category_name}
+                  </h1>
                 </div>
               </Link>
             ))}
