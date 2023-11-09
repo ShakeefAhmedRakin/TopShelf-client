@@ -41,6 +41,7 @@ const UpdateBook = () => {
         headers: {
           "Content-Type": "application/json",
         },
+        withCredentials: true,
       })
       .then((response) => {
         if (response.data.modifiedCount > 0) {

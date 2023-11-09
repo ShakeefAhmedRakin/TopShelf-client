@@ -12,11 +12,19 @@ const Login = () => {
   const handleGoogleSignIn = () => {
     signInWithGoogle()
       .then((result) => {
-        console.log(result.user);
-        toast.success("Successfully logged in. Redirecting...");
-        setTimeout(() => {
-          navigate("/");
-        }, 2000);
+        axios
+          .post(`${import.meta.env.VITE_apiURL}/jwt`, result.email, {
+            withCredentials: true,
+          })
+          .then((response) => {
+            console.log(response.data);
+            if (response.data.success) {
+              toast.success("Successfully logged in. Redirecting...");
+              setTimeout(() => {
+                navigate("/");
+              }, 2000);
+            }
+          });
       })
       .catch((error) => {
         toast.error(error.message);

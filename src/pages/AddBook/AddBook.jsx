@@ -40,6 +40,7 @@ const AddBook = () => {
         headers: {
           "Content-Type": "application/json",
         },
+        withCredentials: true,
       })
       .then((response) => {
         const data = response.data;

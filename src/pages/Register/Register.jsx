@@ -2,6 +2,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { toast } from "sonner";
 import { useContext } from "react";
 import { AuthContext } from "../../providers/AuthProvider";
+import axios from "axios";
 
 const Register = () => {
   const { createUser, addUsernamePhoto, signInUser, logOut } =
@@ -35,13 +36,22 @@ const Register = () => {
           .then(() => {
             logOut().then(() => {
               signInUser(email, password)
-                .then((result) => {
-                  console.log(result.user);
-                  toast.success("Successfully registered. Redirecting...");
-                  e.target.reset();
-                  setTimeout(() => {
-                    navigate("/");
-                  }, 2000);
+                .then(() => {
+                  const user = { email };
+                  axios
+                    .post(`${import.meta.env.VITE_apiURL}/jwt`, user, {
+                      withCredentials: true,
+                    })
+                    .then((response) => {
+                      console.log(response.data);
+                      if (response.data.success) {
+                        toast.success("Successfully logged in. Redirecting...");
+                        e.target.reset();
+                        setTimeout(() => {
+                          navigate("/");
+                        }, 2000);
+                      }
+                    });
                 })
                 .catch((error) => {
                   console.log("Error from logging in user" + error);

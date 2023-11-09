@@ -81,7 +81,10 @@ const router = createBrowserRouter([
             <AllBooks></AllBooks>
           </PrivateRoute>
         ),
-        loader: () => axios.get(`${import.meta.env.VITE_apiURL}/books`),
+        loader: () =>
+          axios.get(`${import.meta.env.VITE_apiURL}/books`, {
+            withCredentials: true,
+          }),
       },
       {
         path: "/update/:id",
