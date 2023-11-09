@@ -2,11 +2,16 @@ import { Link } from "react-router-dom";
 
 const Banner = () => {
   return (
+    // https://i.ibb.co/wwZtNWs/bg-bggenerator-com.jpg
     <div className="px-2">
       <section className="bg-white dark:bg-gray-900 max-w-7xl mx-auto px-2 mt-12 relative flex justify-center items-center">
         <img
           src="https://i.ibb.co/10z9SPK/bg-bggenerator-com.png"
-          className="px-2 absolute object-cover h-full w-full dark:opacity-10 object-top"
+          className="dark:hidden px-2 absolute object-cover h-full w-full object-top"
+        />
+        <img
+          src="https://i.ibb.co/wwZtNWs/bg-bggenerator-com.jpg"
+          className="hidden dark:flex px-2 absolute object-cover h-full w-full  object-top  opacity-70"
         />
         <div className="py-8 px-4 mx-auto max-w-screen-xl text-center lg:py-28 lg:px-12 z-10 flex flex-col  justify-center items-center">
           <h1 className="mb-4 text-4xl font-extrabold tracking-tight leading-none text-gray-900 md:text-5xl lg:text-6xl dark:text-gray-300">
@@ -20,7 +25,7 @@ const Banner = () => {
           </p>
           <div className="flex flex-col mb-8 lg:mb-16 space-y-4 sm:flex-row sm:justify-center sm:space-y-0 sm:space-x-4">
             <Link to={"/register"}>
-              <button className="btn bg-primaryLight text-white font-bold hover:bg-primaryLight border-none dark:bg-primaryDark">
+              <button className="btn bg-primaryLight text-white font-bold hover:bg-primaryLight border-none dark:bg-gray-800">
                 Sign Up Now
               </button>
             </Link>
