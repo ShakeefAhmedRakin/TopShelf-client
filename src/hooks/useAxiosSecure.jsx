@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useEffect } from "react";
 const axiosSecure = axios.create({
-  baseURL: "http://localhost:5000",
+  baseURL: "https://top-shelf-server.vercel.app",
 });
 
 const useAxiosSecure = () => {
@@ -11,17 +11,9 @@ const useAxiosSecure = () => {
         return res;
       },
       (error) => {
-        console.log("Error In Interceptor", error.response);
+        console.log("error tracked in the interceptor", error.response);
         if (error.response.status === 401 || error.response.status === 403) {
-          console.log("LOG OUT");
-          // logOut()
-          //   .then(() => {
-          //     toast.success("Unauthorized, logging out...");
-          //     setTimeout(() => {
-          //       navigate("/login");
-          //     }, 2000);
-          //   })
-          //   .catch((error) => console.log(error));
+          console.log("Forbidden");
         }
       }
     );
