@@ -2,9 +2,14 @@
 
 ### Client Side Live Link: https://topshelf-79995.web.app
 
-### Features
+### Technologies
+<p align="left">
+  <a href="https://skillicons.dev">
+    <img src="https://skillicons.dev/icons?i=firebase,mongodb,react,tailwind,express,nodejs&perline=8" />
+  </a>
+</p>
 
-<hr>
+### Features
 
 #### 1. Download as PDF
 
